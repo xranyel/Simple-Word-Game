@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Project: Word game</title>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+			body {
+				font-family: "Poppins", sans-serif;
+				margin: 15em;
+				padding: 1em;
+				text-align: center;
+			}
+			form {
+				font-size: 1.5em;
+				border: 2px solid gray;
+				border-radius: 15px;
+				padding: 1em;
+			}
+			.scrambled,
+			input,
+			button {
+				font-family: "Poppins", sans-serif;
+				font-weight: 500;
+				font-size: 2em;
+			}
+
+			.btn {
+				background-color: green;
+				border: none;
+				text-decoration: none;
+				border-radius: 15px;
+				color: white;
+			}
+
+			.txtbox {
+				border: 2px solid black;
+				border-radius: 5px;
+				margin-bottom: 1em;
+				text-align: center;
+			}
+
+			#result {
+				color: rgb(19, 191, 88);
+			}
+
+			#resultTwo {
+				color: rgb(245, 5, 25);
+			}
+
+			.lbl {
+				margin-bottom: 1em;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Word game!</h1>
+		<p>note: CAPSLOCK ON</p>
+		<button style="border-radius: 25px" onClick="window.location.reload();">
+			CHANGE WORD
+		</button>
+		<form id="joke-form">
+			<label class="lbl">
+				Unscramble these letters to form a word:<br />
+				<span class="scrambled" id="word"></span>
+				<br />
+				<input
+					class="txtbox"
+					type="text"
+					size="10"
+					id="answer"
+					autocomplete="off"
+				/>
+			</label>
+			<button class="btn" type="submit">Check</button>
+		</form>
+		<div id="result"></div>
+		<div id="resultTwo"></div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script>
+			function getRandomItem(arr) {
+				const randomIndex = Math.floor(Math.random() * arr.length);
+				const item = arr[randomIndex];
+				return item;
+			}
+
+			const array = [
+				"MOBILE",
+				"DRAGON",
+				"COMPUTER",
+				"YOUTUBE",
+				"TECHNOLOGY",
+			];
+			const result = getRandomItem(array);
+
+			if (result === "MOBILE") {
+				document.getElementById("word").innerHTML = "BEOMLI";
+			} else if (result === "DRAGON") {
+				document.getElementById("word").innerHTML = "RDNOGA";
+			} else if (result === "COMPUTER") {
+				document.getElementById("word").innerHTML = "PTROUMCE";
+			} else if (result === "YOUTUBE") {
+				document.getElementById("word").innerHTML = "EYBOUUT";
+			} else if (result === "TECHNOLOGY") {
+				document.getElementById("word").innerHTML = "LEYHOONTGC";
+			}
+
+			$("#joke-form").on("submit", function (event) {
+				event.preventDefault();
+				var $answer = $("#answer");
+				var answer = $answer.val();
+				if (answer === result) {
+					$("#result").text("YOU GOT IT!");
+				} else {
+					$("#resultTwo").text("Try again!");
+				}
+			});
+		</script>
+	</body>
+</html>
